@@ -40,6 +40,55 @@ Create a new array called sortedPeople of type [`Human`] that is the people arra
 
 </br> </br>
 
+ANSWER:
+
+class Human: CustomStringConvertible,Equatable,Comparable{
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        lhs.age < rhs.age
+    }
+    static func == (lhs: Human, rhs: Human) -> Bool {
+                return lhs.name == rhs.name && lhs.age == rhs.age
+    }
+    var description: String
+    var name: String
+    var age: Int
+    
+init(name: String,
+        age: Int) {
+        self.age = age
+        self.name = name
+        self.description = "\(name) is \(age) years old and is helping us while we're, Finding Humans!"
+    }
+}
+
+var notAnAlien = Human(name: "HumanBeing", age: 35)
+
+var notAnAnimal = Human(name: "HomoSapien", age: 1500)
+
+print(notAnAnimal.description)
+print(notAnAlien.description)
+
+
+if notAnAnimal == notAnAlien {
+    print("They're the same")
+} else {
+    print("They're different")
+}
+
+if notAnAnimal < notAnAlien {
+    print("\(notAnAnimal.name) is younger")
+} else {
+    print("\(notAnAlien.name) is younger")
+}
+
+var humanThree = Human(name: "HummanThree", age: 487)
+var humanFour = Human(name: "HumanFour", age: 5)
+var humanFive = Human(name: "HumanFive", age: 23454)
+
+var people :[Human] = [notAnAnimal,notAnAlien,humanThree,humanFour,humanFive]
+var sortedPeople = people.sorted()
+print(sortedPeople)
+
 
 ## Question 2
 
@@ -73,6 +122,48 @@ protocol Flyable {
  var airspeedVelocity: Double { get }
 }
 ```
+Answer:
+
+protocol Bird {
+ var name: String { get }
+ var canFly: Bool { get }
+}
+
+protocol Flyable {
+ var airspeedVelocity: Double { get }
+}
+
+struct Penguin: Bird {
+    var name: String {
+        return "Penny Penguin"
+    }
+    var color: String = "Black and White"
+    var canFly: Bool {
+        return false
+    }
+    
+}
+var penguin = Penguin()
+print("\(penguin.name) is a \(penguin.color) bird that can fly right? \(penguin.canFly)")
+
+struct Eagle: Bird, Flyable {
+    var name: String {
+        return "Emit the Eagle"
+    }
+        var canFly: Bool {
+        return true
+    }
+    
+var airspeedVelocity: Double {
+        return 150.0
+    }
+    
+var color: String = "Golden Brown"
+    
+}
+var eagle = Eagle()
+
+print("\(eagle.name) is a \(eagle.color) bird that cannot fly right? \(penguin.canFly)! In fact, it's speed reaches \(eagle.airspeedVelocity) mph! ")
 
 </br> </br>
 

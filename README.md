@@ -225,7 +225,37 @@ bruceBanner.transform() . // hulk
 
 bruceBanner.transform()  // notHulk
 ```
+Answer: 
+protocol Transformation {
 
+mutating func transform()
+    
+}
+
+enum SuperHero: Transformation {
+    
+case notHulk
+    
+case hulk
+    
+    
+func transform() {
+        if bruceBanner == .hulk {
+            bruceBanner = .notHulk
+        } else if bruceBanner == .notHulk {
+            bruceBanner = .hulk
+        }
+        
+}
+    
+    
+}
+    var bruceBanner = SuperHero.notHulk
+
+bruceBanner.transform()  //hulk
+bruceBanner.transform() //notHulk
+bruceBanner.transform()  //hulk
+bruceBanner.transform() //notHulk
 </br> </br>
 
 
@@ -245,6 +275,75 @@ f. Put an instance of each of your classes in an array.
 
 g. Iterate over the array and have them print their `message` property
 
+
+Answer:
+
+protocol Communication {
+    var message: String { get }
+    
+func talk()
+}
+
+
+class Cow: Communication {
+    
+var message: String
+    
+init ( message: String ) {
+        self.message = message }
+    
+func talk() {
+        print(message)
+    }
+}
+
+
+
+class Dog: Communication {
+    var message: String
+    
+init ( message: String ) {
+          self.message = message }
+    
+func talk() {
+        print(message)
+    }
+}
+
+
+
+class Cat: Communication {
+    var message: String
+    
+init ( message: String ) {
+          self.message = message }
+    
+func talk() {
+        print(message)
+    }
+}
+
+ var cow = Cow(message: "Mooo!")
+ var dog = Dog(message: "Woof!")
+ var cat = Cat(message: "Meow!")
+
+//cow.talk()
+//dog.talk()
+//cat.talk()
+
+var arrayOfAnimals = ["\(cow)","\(dog)","\(cat)"]
+
+for animal in arrayOfAnimals {
+    if animal == "\(cow)" {
+        print(cow.message)
+    } else if animal == "\(dog)" {
+        print(dog.message)
+    } else if animal == "\(cat)" {
+        print(cat.message)
+    }
+}
+
+note: im not sure if this is what you meant, but i kept getting a compile error when i didnt string interpolate the instance of the classes, so i tried it this way. hopefull this isnt hard-coding. 
 
 ## Question 6
 
